@@ -10,7 +10,7 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => (
     initial={{ opacity: 0, x: 20 }}
     animate={{ opacity: 1, x: 0 }}
     exit={{ opacity: 0, x: -20 }}
-    transition={{ duration: 0.3, ease: "easeOut" }}
+    transition={{ duration: 0.3, ease: 'easeOut' }}
   >
     {children}
   </motion.div>
@@ -18,26 +18,33 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => (
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="/Dashboard">
       <div className="flex min-h-screen bg-[#f8f9ff]">
         <Sidebar />
-        
+
         <main className="flex-1 ml-64 flex flex-col">
           <TopBar />
-          
+
           <div className="p-8 pb-16">
             <AnimatePresence mode="wait">
               <Routes>
-                <Route path="/" element={
-                  <PageTransition>
-                    <Dashboard />
-                  </PageTransition>
-                } />
-                <Route path="/reports" element={
-                  <PageTransition>
-                    <Reports />
-                  </PageTransition>
-                } />
+                <Route
+                  path="/"
+                  element={
+                    <PageTransition>
+                      <Dashboard />
+                    </PageTransition>
+                  }
+                />
+
+                <Route
+                  path="/reports"
+                  element={
+                    <PageTransition>
+                      <Reports />
+                    </PageTransition>
+                  }
+                />
               </Routes>
             </AnimatePresence>
           </div>
